@@ -321,6 +321,23 @@ summary(syn)
 
 ```{r, warning=FALSE}
 plot(syn)
+install.packages("sf")
+install.packages("tigris")
+library(sf)
+library(tigris)
+places <- places("CA", class = "sf")
+# Specify the file path for the CSV output
+output_path <- "/Users/sarongoitom/Desktop/cp_shape.csv"
+
+# Write the data frame to a CSV file
+write.csv(places, output_path, row.names = FALSE)
+write.csv(places, output_path, row.names = FALSE, na = "", fileEncoding = "UTF-8")
+
+path_out= "/Users/sarongoitom/Desktop/cp_shape.csv"
+saveRDS(places, "/Users/sarongoitom/Desktop/cp_shape.RDS")
+
+
+my_data_rds_loaded <- readRDS("/Users/sarongoitom/Desktop/cp_shape.rds")
 ```
 
 - Re-run the same analysis but this time use an augmentation (default choices are Ridge, Matrix Completion, and GSynth). Create the same plot and report the average ATT and L2 imbalance.
